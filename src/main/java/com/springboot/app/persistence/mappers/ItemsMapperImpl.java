@@ -21,7 +21,7 @@ public class ItemsMapperImpl implements ItemsMapper
   @Override
   public List<ItemsModel> getItemsMapper(ItemsModel obj) throws Exception
   {
-    String sql = UtilStr.removeSpaces(
+    String sql = UtilStr.replaceSpacesToOneSpace(
             " SELECT * " +
             " FROM items " +
             " ORDER BY id DESC ");
@@ -33,11 +33,11 @@ public class ItemsMapperImpl implements ItemsMapper
   @Override
   public List<ItemsModel> searchItemsMapper(ItemsModel obj) throws Exception
   {
-    String sql = UtilStr.removeSpaces(
+    String sql = UtilStr.replaceSpacesToOneSpace(
             " SELECT * " +
             " FROM items " +
-            " WHERE (nombre LIKE   '%" + obj.getNombre() + "%') " +
-            " OR (descripcion LIKE '%" + obj.getDescripcion() + "%') " +
+            " WHERE (nombre LIKE   '%" + obj.getSearch()+ "%') " +
+            " OR (descripcion LIKE '%" + obj.getSearch() + "%') " +
             " ORDER BY id DESC ");
 
     return JdbcTemplate.query(sql, new BeanPropertyRowMapper(ItemsModel.class));
@@ -47,7 +47,7 @@ public class ItemsMapperImpl implements ItemsMapper
   @Override
   public int insertItemsMapper(ItemsModel obj) throws Exception
   {
-    String sql = UtilStr.removeSpaces(
+    String sql = UtilStr.replaceSpacesToOneSpace(
             " INSERT INTO items " +
             " (nombre, " +
             "  descripcion, " +
@@ -64,7 +64,7 @@ public class ItemsMapperImpl implements ItemsMapper
   @Override
   public int updateItemsMapper(ItemsModel obj) throws Exception
   {
-    String sql = UtilStr.removeSpaces(
+    String sql = UtilStr.replaceSpacesToOneSpace(
             " UPDATE items     " +
             " SET nombre=     '" + obj.getNombre() + "'" +
             "    ,descripcion='" + obj.getDescripcion() + "'" +
@@ -78,7 +78,7 @@ public class ItemsMapperImpl implements ItemsMapper
   @Override
   public int deleteItemsMapper(ItemsModel obj) throws Exception
   {
-    String sql = UtilStr.removeSpaces(
+    String sql = UtilStr.replaceSpacesToOneSpace(
             " DELETE FROM items " +
             " WHERE id=         " + obj.getId());
 
