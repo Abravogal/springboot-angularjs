@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 @Service
 public class ItemsServiceImpl implements ItemsService
 {
 
   @Autowired
   ItemsMapper iMapper;
+
 
   @Override
   public List<ItemsModel> getItemsService(ItemsModel obj) throws Exception
@@ -24,6 +26,7 @@ public class ItemsServiceImpl implements ItemsService
 
     return x;
   }
+
 
   @Override
   public List<ItemsModel> searchItemsService(ItemsModel obj) throws Exception
@@ -35,11 +38,12 @@ public class ItemsServiceImpl implements ItemsService
     return list;
   }
 
+
   /**
    * METODO PARA REEMPLAZAR LA CADENA BUSCADA EN UNA LISTA DE ITEMS.
    *
    * @param obj Cadena a buscar.
-   * @param x Lista a reemplazar.
+   * @param x   Lista a reemplazar.
    *
    * @return Lista de items reemplazada.
    */
@@ -47,7 +51,8 @@ public class ItemsServiceImpl implements ItemsService
   {
     String classCss = "found";
     List<ItemsModel> listRemove = new ArrayList<>();
-    String objSearch = UtilStr.normalizerStr(UtilStr.replaceSpacesToOneSpace(obj.getSearch()));
+    String objSearch = UtilStr.normalizerStr(UtilStr.
+            replaceSpacesToOneSpace(obj.getSearch()));
     Pattern pattern = UtilStr.patternCaseInsensitive(objSearch);
 
     for (ItemsModel item : x)
@@ -96,4 +101,5 @@ public class ItemsServiceImpl implements ItemsService
 
     return x;
   }
+
 }

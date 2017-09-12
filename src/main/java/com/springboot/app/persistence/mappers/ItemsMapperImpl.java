@@ -36,7 +36,7 @@ public class ItemsMapperImpl implements ItemsMapper
     String sql = UtilStr.replaceSpacesToOneSpace(
             " SELECT * " +
             " FROM items " +
-            " WHERE (nombre LIKE   '%" + obj.getSearch()+ "%') " +
+            " WHERE (nombre LIKE   '%" + obj.getSearch() + "%') " +
             " OR (descripcion LIKE '%" + obj.getSearch() + "%') " +
             " ORDER BY id DESC ");
 

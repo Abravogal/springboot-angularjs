@@ -4,6 +4,7 @@ import java.text.Normalizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class UtilStr
 {
 
@@ -20,6 +21,7 @@ public class UtilStr
     return str.replaceAll("\\s+", " ").trim();
   }
 
+
   /**
    * METODO PARA ELIMINAR EN UNA CADENA LOS ESPACIOS EN BLANCOS, SALTOS DE
    * CARROS Y TABULADORES.
@@ -33,6 +35,7 @@ public class UtilStr
     return str.replaceAll("\\s+", "").trim();
   }
 
+
   /**
    * METODO PARA GENERAR UN PATRON CASE INSENSITIVE.
    *
@@ -45,11 +48,12 @@ public class UtilStr
     return Pattern.compile("(?i)" + str);
   }
 
+
   /**
    * METODO PARA COMPARAR DOS CADENAS.
    *
    * @param pattern Patron a comparar.
-   * @param str Cadena a comparar
+   * @param str     Cadena a comparar
    *
    * @return Si esw coincidente o no..
    */
@@ -57,6 +61,7 @@ public class UtilStr
   {
     return pattern.matcher(str);
   }
+
 
   /**
    * METODO PARA REALIZAR UN REMPLAZO DE UNA CADENA POR UN TAG SPAN HTML.
@@ -70,10 +75,11 @@ public class UtilStr
     return "<span>" + str + "</span>";
   }
 
+
   /**
    * METODO PARA REALIZAR UN REMPLAZO DE UNA CADENA POR UN TAG SPAN HTML.
    *
-   * @param str Cadena a insertar en el tag.
+   * @param str      Cadena a insertar en el tag.
    * @param classCss Clase css.
    *
    * @return tag span generado en html.
@@ -82,6 +88,7 @@ public class UtilStr
   {
     return "<span class=\"" + classCss + "\">" + str + "</span>";
   }
+
 
   /**
    * CONVERSION DEL TEXTO A SU FORMA CANONICAL DECOMPOSITION, REPRESENTANDO LOS
