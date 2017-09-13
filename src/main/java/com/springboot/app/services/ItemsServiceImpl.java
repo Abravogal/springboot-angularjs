@@ -10,14 +10,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 @Service
 public class ItemsServiceImpl implements ItemsService
 {
 
   @Autowired
   ItemsMapper iMapper;
-
 
   @Override
   public List<ItemsModel> getItemsService(ItemsModel obj) throws Exception
@@ -27,27 +25,16 @@ public class ItemsServiceImpl implements ItemsService
     return x;
   }
 
-
   @Override
   public List<ItemsModel> searchItemsService(ItemsModel obj) throws Exception
   {
     List<ItemsModel> x = iMapper.searchItemsMapper(obj);
 
-    List<ItemsModel> list = this.replaceSearch(obj, x);
-
-    return list;
+    return x;
   }
 
-
-  /**
-   * METODO PARA REEMPLAZAR LA CADENA BUSCADA EN UNA LISTA DE ITEMS.
-   *
-   * @param obj Cadena a buscar.
-   * @param x   Lista a reemplazar.
-   *
-   * @return Lista de items reemplazada.
-   */
-  private List<ItemsModel> replaceSearch(ItemsModel obj, List<ItemsModel> x)
+  @Override
+  public List<ItemsModel> underlineItemsService(ItemsModel obj, List<ItemsModel> items) throws Exception
   {
     String classCss = "found";
     List<ItemsModel> listRemove = new ArrayList<>();
@@ -55,7 +42,7 @@ public class ItemsServiceImpl implements ItemsService
             replaceSpacesToOneSpace(obj.getSearch()));
     Pattern pattern = UtilStr.patternCaseInsensitive(objSearch);
 
-    for (ItemsModel item : x)
+    for (ItemsModel item : items)
     {
       boolean bln = false;
       int iElem = 0;
@@ -97,9 +84,9 @@ public class ItemsServiceImpl implements ItemsService
       }
     }
 
-    x.removeAll(listRemove);
+    items.removeAll(listRemove);
 
-    return x;
+    return items;
   }
 
 }
