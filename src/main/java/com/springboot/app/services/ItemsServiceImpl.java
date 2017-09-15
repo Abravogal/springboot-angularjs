@@ -1,6 +1,5 @@
 package com.springboot.app.services;
 
-import com.springboot.app.persistence.mappers.ItemsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.springboot.app.persistence.models.ItemsModel;
@@ -9,29 +8,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.springboot.app.persistence.mappers.jdbctemplates.JDBCItemsMapper;
+import com.springboot.app.persistence.mappers.mybatis.IBATISItemsMapper;
+
 
 @Service
 public class ItemsServiceImpl implements ItemsService
 {
 
   @Autowired
-  ItemsMapper iMapper;
+  JDBCItemsMapper jMapper;
+
+  @Autowired
+  IBATISItemsMapper iMapper;
+
 
   @Override
   public List<ItemsModel> getItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = iMapper.getItemsMapper(obj);
+    List<ItemsModel> x = jMapper.getItemsMapper(obj);
+    //List<ItemsModel> x = iMapper.getItemsMapper(obj);
 
     return x;
   }
+
 
   @Override
   public List<ItemsModel> searchItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = iMapper.searchItemsMapper(obj);
+    List<ItemsModel> x = jMapper.searchItemsMapper(obj);
 
     return x;
   }
+
 
   @Override
   public List<ItemsModel> underlineItemsService(ItemsModel obj, List<ItemsModel> items) throws Exception

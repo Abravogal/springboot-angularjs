@@ -1,10 +1,10 @@
-package com.springboot.app.persistence.mappers;
+package com.springboot.app.persistence.mappers.jdbctemplates;
 
 import com.springboot.app.persistence.models.ItemsModel;
 import java.util.List;
 
 
-public interface ItemsMapper
+public interface JDBCItemsMapper
 {
 
   /**
@@ -32,7 +32,7 @@ public interface ItemsMapper
    *
    * @param obj Objeto tipo ItemsModel.
    *
-   * @return Exito o fracaso de la consulta.
+   * @return Numero de filas procesadas.
    */
   public int insertItemsMapper(ItemsModel obj) throws Exception;
 
@@ -42,7 +42,7 @@ public interface ItemsMapper
    *
    * @param obj Objeto tipo ItemsModel.
    *
-   * @return Exito o fracaso de la consulta.
+   * @return Numero de filas procesadas.
    */
   public int updateItemsMapper(ItemsModel obj) throws Exception;
 
@@ -52,7 +52,7 @@ public interface ItemsMapper
    *
    * @param obj Objeto tipo ItemsModel.
    *
-   * @return Exito o fracaso de la consulta.
+   * @return Numero de filas procesadas.
    */
   public int deleteItemsMapper(ItemsModel obj) throws Exception;
 

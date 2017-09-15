@@ -1,4 +1,4 @@
-package com.springboot.app.persistence.mappers;
+package com.springboot.app.persistence.mappers.jdbctemplates;
 
 
 import com.springboot.app.persistence.models.TestModel;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class TestMapperImpl implements TestMapper
+public class JDBCTestMapperImpl implements JDBCTestMapper
 {
 
   @Autowired

@@ -1,4 +1,4 @@
-package com.springboot.app.persistence.mappers;
+package com.springboot.app.persistence.mappers.jdbctemplates;
 
 
 import com.springboot.app.persistence.models.ItemsModel;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class ItemsMapperImpl implements ItemsMapper
+public class JDBCItemsMapperImpl implements JDBCItemsMapper
 {
 
   @Autowired

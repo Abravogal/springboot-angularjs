@@ -103,7 +103,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.3.1</version>
+      <version>3.4.5</version>
     </dependency>	
   
     <dependency>
@@ -146,8 +146,9 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
     </plugins>
+    <resources>
 
+    </resources>
+    
   </build>
-
-
 </project>

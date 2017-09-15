@@ -2,9 +2,9 @@ package com.springboot.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.springboot.app.persistence.mappers.TestMapper;
 import com.springboot.app.persistence.models.TestModel;
 import java.util.List;
+import com.springboot.app.persistence.mappers.jdbctemplates.JDBCTestMapper;
 
 
 @Service
@@ -12,7 +12,7 @@ public class TestServiceImpl implements TestService
 {
 
   @Autowired
-  TestMapper iMapper;
+  JDBCTestMapper iMapper;
 
 
   @Override
