@@ -4,7 +4,9 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -37,15 +39,44 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 })
 @ComponentScan(basePackages =
 {
-  "com.springboot.app.*"
+  "com.springboot.app"
+})
+@MapperScan(basePackages =
+{
+  "com.springboot.app.persistence.mappers.mybatis"
 })
 @PropertySource("classpath:/application/application.properties")
-@MapperScan(basePackages = "com.springboot.app.persistence.mappers.mybatis")
 public class AppConfiguration extends WebMvcConfigurerAdapter
 {
 
+  private final org.slf4j.Logger log = LoggerFactory.getLogger(this.getClass());
+
   @Autowired
   private Environment env;
+
+  @Value("${spring.datasource.driver-class-name}")
+  private String DB_DRIVER;
+
+  @Value("${spring.datasource.url}")
+  private String DB_URL;
+
+  @Value("${spring.datasource.username}")
+  private String DB_USERNAME;
+
+  @Value("${spring.datasource.password}")
+  private String DB_PASSWORD;
+
+  @Value("${cofg.dir.resources}")
+  private String DIR_RESOURCES;
+
+  @Value("${cofg.dir.webapp}")
+  private String DIR_WEBAPP;
+
+  @Value("${cofg.persistence.models}")
+  private String PERSISTENCE_MODELS;
+
+  @Value("${cofg.persistence.xml.mybatis}")
+  private String PERSISTENCE_IBATIS;
 
 
   @Override
@@ -58,16 +89,17 @@ public class AppConfiguration extends WebMvcConfigurerAdapter
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry)
   {
-    registry.addResourceHandler("/resources/**").
-            addResourceLocations("/resources/").setCachePeriod(0).
-            resourceChain(true).
-            addResolver(new PathResourceResolver());
+    registry.addResourceHandler(this.DIR_RESOURCES + "**")
+            .addResourceLocations("classpath:" + this.DIR_RESOURCES)
+            .setCachePeriod(0).
+            resourceChain(true)
+            .addResolver(new PathResourceResolver());
 
-    registry.addResourceHandler("/webjars/**").
-            addResourceLocations("/webjars/").setCachePeriod(0).
-            resourceChain(true).
-            addResolver(new PathResourceResolver());
-
+    registry.addResourceHandler(this.DIR_WEBAPP + "**")
+            .addResourceLocations("classpath:" + this.DIR_WEBAPP)
+            .setCachePeriod(0).
+            resourceChain(true)
+            .addResolver(new PathResourceResolver());
   }
 
 
@@ -88,30 +120,25 @@ public class AppConfiguration extends WebMvcConfigurerAdapter
   @Bean
   public SqlSessionFactory sqlSessionFactoryBean() throws Exception
   {
-    String aliases = "com.springboot.app.persistence.models";
-    String resources = "classpath:com/**/*Mapper.xml";
-//    String resources = "classpath:com.springboot.app.persistence.mappers.jdbctemplates/*Mapper.xml";
-
     SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
     PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-    bean.setDataSource(dataSource());
-    bean.setTypeAliasesPackage(aliases);
-    bean.setMapperLocations(resolver.getResources(resources));
+    bean.setDataSource(this.dataSource());
+    bean.setTypeAliasesPackage(this.PERSISTENCE_MODELS);
+    bean.setMapperLocations(resolver.getResources("classpath*:" + this.PERSISTENCE_IBATIS));
 
     return bean.getObject();
   }
 
 
-  public DataSource dataSource()
+  private DataSource dataSource()
   {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-    dataSource.setDriverClassName(env.
-            getProperty("spring.datasource.driver-class-name"));
-    dataSource.setUrl(env.getProperty("spring.datasource.url"));
-    dataSource.setUsername(env.getProperty("spring.datasource.username"));
-    dataSource.setPassword(env.getProperty("spring.datasource.password"));
+    dataSource.setDriverClassName(this.DB_DRIVER);
+    dataSource.setUrl(this.DB_URL);
+    dataSource.setUsername(this.DB_USERNAME);
+    dataSource.setPassword(this.DB_PASSWORD);
 
     return dataSource;
   }

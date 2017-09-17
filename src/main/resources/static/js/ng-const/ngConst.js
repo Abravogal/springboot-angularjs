@@ -8,6 +8,6 @@ const GBL_COFG =
 
   urlTemplate: function (template)
   {
-    return this.url + '/ng-template/' + template;
+    return this.url + '/ng-templates/' + template;
   }
 }; 

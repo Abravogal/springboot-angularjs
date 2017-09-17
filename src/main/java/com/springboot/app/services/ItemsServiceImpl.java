@@ -26,8 +26,7 @@ public class ItemsServiceImpl implements ItemsService
   @Override
   public List<ItemsModel> getItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = jMapper.getItemsMapper(obj);
-    //List<ItemsModel> x = iMapper.getItemsMapper(obj);
+    List<ItemsModel> x = iMapper.getItemsMapper(obj);
 
     return x;
   }
@@ -36,7 +35,7 @@ public class ItemsServiceImpl implements ItemsService
   @Override
   public List<ItemsModel> searchItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = jMapper.searchItemsMapper(obj);
+    List<ItemsModel> x = iMapper.searchItemsMapper(obj);
 
     return x;
   }
@@ -47,8 +46,7 @@ public class ItemsServiceImpl implements ItemsService
   {
     String classCss = "found";
     List<ItemsModel> listRemove = new ArrayList<>();
-    String objSearch = UtilStr.normalizerStr(UtilStr.
-            replaceSpacesToOneSpace(obj.getSearch()));
+    String objSearch = UtilStr.normalizerStr(UtilStr.replaceSpacesToOneSpace(obj.getSearch()));
     Pattern pattern = UtilStr.patternCaseInsensitive(objSearch);
 
     for (ItemsModel item : items)
