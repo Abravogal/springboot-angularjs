@@ -17,16 +17,16 @@ public class ItemsServiceImpl implements ItemsService
 {
 
   @Autowired
-  JDBCItemsMapper jMapper;
+  JDBCItemsMapper jdbcMapper;
 
   @Autowired
-  IBATISItemsMapper iMapper;
+  IBATISItemsMapper ibatisMapper;
 
 
   @Override
   public List<ItemsModel> getItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = iMapper.getItemsMapper(obj);
+    List<ItemsModel> x = ibatisMapper.getItemsMapper(obj);
 
     return x;
   }
@@ -35,7 +35,7 @@ public class ItemsServiceImpl implements ItemsService
   @Override
   public List<ItemsModel> searchItemsService(ItemsModel obj) throws Exception
   {
-    List<ItemsModel> x = iMapper.searchItemsMapper(obj);
+    List<ItemsModel> x = ibatisMapper.searchItemsMapper(obj);
 
     return x;
   }
