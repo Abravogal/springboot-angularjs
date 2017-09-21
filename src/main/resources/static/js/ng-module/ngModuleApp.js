@@ -22,6 +22,11 @@ app.config(['$routeProvider', '$locationProvider',
       templateUrl: GBL_COFG.urlTemplate('test-bbdd.html'),
       controller: 'ngAppControllerTestBbdd'
     })
+    .when('/bbdd',
+    {
+      templateUrl: GBL_COFG.urlTemplate('bbdd.html'),
+      controller: 'ngAppControllerBbdd'
+    })
     .when('/kirby',
     {
       templateUrl: GBL_COFG.urlTemplate('kirby.html')

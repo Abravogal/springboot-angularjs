@@ -1,0 +1,18 @@
+<div id="bbdd">
+  <select ng-click="test($event)">
+    <option>Seleccione Tabla de la BBDD</option>
+    <option value="{{item.table}}" ng-repeat="item in tables track by $index">{{$index}} / {{item.table}}</option>
+  </select>
+
+  <div>
+    <form ng-repeat="(key, value) in dataBbdd track by $index">
+      <fieldset>
+        <input type="checkbox" />
+      </fieldset>
+      <fieldset ng-repeat="(n, v) in value">
+        <legend>{{n}}</legend>
+        <input type="text" name="{{n}}" value="{{v}}" placeholder="{{n}}" ng-readonly="'{{n}}'=== 'id'"/>
+      </fieldset>
+    </form>
+  </div>
+</div>
