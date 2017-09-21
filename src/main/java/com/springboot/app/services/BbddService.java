@@ -13,7 +13,7 @@ public interface BbddService
    *
    * @param obj Objeto tipo ItemsModel.
    *
-   * @return Lista de objetos tipo ItemsModel.
+   * @return Lista de objetos tipo Map.
    */
   public List<Map<String, Object>> getDataBBDD(TestModel obj) throws Exception;
 
