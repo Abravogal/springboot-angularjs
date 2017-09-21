@@ -39,7 +39,7 @@ app.controller('ngAppControllerSearch',
       .then(function (response)
       {
         scopeItems(response.data);
-      })
+      });
     })();
 
 
