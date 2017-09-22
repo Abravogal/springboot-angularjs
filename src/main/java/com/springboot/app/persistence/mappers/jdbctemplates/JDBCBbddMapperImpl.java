@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class BbddMapperImpl implements BbddMapper
+public class JDBCBbddMapperImpl implements JDBCBbddMapper
 {
 
   @Autowired
